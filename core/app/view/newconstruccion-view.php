@@ -2,6 +2,7 @@
 	<div class="col-md-12">
 	<h1>Nueva Licencia de Construcción</h1>
 	<br>
+	<!-- action="index.php?view=addconstruccion"-->
 	<form class="form-horizontal" method="post" enctype="multipart/form-data" id="addconstruccion" action="index.php?view=addconstruccion" role="form">
 		<div class="row">
 			<div class="col-md-6">
@@ -34,7 +35,7 @@
 								<label class="control-label">No. Recibo</label>
 							</div>
 							<div class="col-md-6">
-								<input type="text" name="numero_recibo" size="10" class="form-control" maxlength="4" required>
+								<input id="no_recibo" type="text" name="numero_recibo" size="10" class="form-control" maxlength="4" required>
 							</div>
 						</div>
 						<div class="col-md-12 form-group">
@@ -207,9 +208,73 @@
 					</div>
 				</div>
 			</div>
-		</div>		
+		</div>
+		<input id="photo" type="text" name="photo" hidden>		
 		<input type="text" name="status" value="aceptado" hidden>
 		<button type="submit" class="btn btn-primary">Guarda Nueva Licencia</button>
 	</form>
 	</div>
+	 
+	<div id="qrcode" style="display: none;"></div>
 </div>
+<script src="/urbano1.4/plugins/Qr/qrcode.min.js"></script>
+<script>
+	var qrcode = new QRCode("qrcode");
+
+	function getBase64Image(img) {
+        var canvas = img;
+        var dataURL = canvas.toDataURL("image/png");
+        return dataURL;
+
+    }
+    
+    function tomar_imagen(){
+        var div_aux = document.getElementById("qrcode");
+        var nodes_div = div_aux.childNodes;
+        console.log(nodes_div[0]);
+        var img_data = getBase64Image(nodes_div[0]);
+        var input_data_photo = document.getElementById("photo");
+		input_data_photo.value = img_data; 
+    } 
+
+    function hash_datos(text){
+        return $.ajax({
+            type:'POST',
+            url: "/urbano1.4/core/app/action/hash_data.php",
+            dataType: "json",
+            data:{data: text},
+            async:false,
+            success: function (response){
+                if(response.status.localeCompare("Error") == 0){
+                    alert("Error");
+                }
+            }
+        });
+
+    }   
+
+    function makeCode () {      
+        var elText = document.getElementById("no_recibo");
+        
+        if (!elText.value) {
+            alert("Input a text");
+            elText.focus();
+            return;
+        }
+        var hash = hash_datos(elText.value);
+        var datos = hash.responseJSON;
+        console.log("Generador: ", datos);
+        qrcode.makeCode(datos.hash);
+    }
+	 $("#no_recibo").
+        on("blur", function () {
+            makeCode();
+            tomar_imagen();
+        }).
+        on("keydown", function (e) {
+            if (e.keyCode == 13) {
+                makeCode();
+                tomar_imagen(); 
+        }
+    });
+</script>

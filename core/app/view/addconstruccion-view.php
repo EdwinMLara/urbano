@@ -5,6 +5,22 @@
 </center>
 <?php
 	if(count($_POST)>0){
+		if(isset($_POST["photo"])){
+
+			$data_post = $_POST["photo"];
+	
+			$name_img = $_SERVER["DOCUMENT_ROOT"].'/urbano1.4/plugins/imagenes/Qr.png';    
+			$datapieces = explode(';base64,',$data_post);
+			$dataEnconding = $datapieces[1];
+			$dataDecoding = base64_decode($dataEnconding);
+	
+			if($dataDecoding!==false){
+				file_put_contents($name_img, $dataDecoding);
+			}        
+		}else{
+			echo "error al crear el QR";
+		}
+
 		$no_recibo=$_POST["numero_recibo"];
 		$doc=$no_recibo.'.pdf';
 		$licence = new ConstruccionData();
@@ -44,5 +60,6 @@
 			$prod= $licence->add();	
 		}
 		Core::redir("report/construccion.php?var=$no_recibo");
+
 	}
 ?>

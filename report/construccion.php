@@ -262,7 +262,7 @@
 			$pdf->Cell(15, 8, 'Uriangato Guanajuato., a '.$dia.' de '.$mes.' de '.$anio, 0,0, 'L');*/
 			
 			$pdf->Ln(25);
-			$pdf->Image('../plugins/imagenes/descarga.png',170,50,30);
+			$pdf->Image('../plugins/imagenes/Qr.png',170,50,30);
 			$pdf->SetFont( 'Arial', '', 10 );
 			$pdf->Cell(15, 8, utf8_decode('Licencia Número '.$datos->numero_licencia),0,0,'L');
 			$pdf->Ln(5);
@@ -413,12 +413,12 @@
 			/*$pdf->Output();*/
 			
 			$pdf->AddPage();
-			$pdf->Image('../plugins/imagenes/descarga.png',55,70,100);
+			$pdf->Image('../plugins/imagenes/Qr.png',55,70,100);
 
 			$filee="../storage/constrccion/$datos->numero_licencia.pdf";
 			$pdf->Output($filee,'F');
 			
-			//print "<script>window.location='../?view=construccion';</script>";
+			print "<script>window.location='../?view=construccion';</script>";
 		}
 		
 	}
