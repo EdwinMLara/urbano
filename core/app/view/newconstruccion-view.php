@@ -245,6 +245,7 @@
             data:{data: text},
             async:false,
             success: function (response){
+				console.log(response);
                 if(response.status.localeCompare("Error") == 0){
                     alert("Error");
                 }
