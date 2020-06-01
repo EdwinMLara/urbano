@@ -81,8 +81,8 @@
 			$sql = "SELECT * FROM licenciacons WHERE numero_licencia = $hash";
 			$query = Executor::doit($sql);
 			$aux = Model::one($query[0],new ConstruccionData());
-			$json_array = array('licencia' => $aux);
-			echo json_encode($json_array);
+			//$json_array = array('licencia' => $aux);
+			echo json_encode($aux);
 		}
 		
 	}
