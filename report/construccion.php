@@ -410,15 +410,15 @@
 			$pdf->SetXY(150,260);
 			$pdf->SetFont('Arial','',10);
 			$pdf->Cell(0,10,utf8_decode('Solicitante'),0,0,'L');
-			/*$pdf->Output();*/
 			
 			$pdf->AddPage();
 			$pdf->Image('../plugins/imagenes/Qr.png',55,70,100);
 
 			$filee="../storage/constrccion/$datos->numero_licencia.pdf";
-			$pdf->Output($filee,'F');
+			//$pdf->Output($filee,'F');
+			$pdf->Output("I");
 			
-			print "<script>window.location='../?view=construccion';</script>";
+			//print "<script>window.location='../?view=construccion';</script>";
 		}
 		
 	}
