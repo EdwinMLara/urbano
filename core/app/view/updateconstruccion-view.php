@@ -23,7 +23,8 @@
 		$licence->domicilio_suscriptor = $_POST["domicilio_suscriptor"];
 		$licence->observaciones = $_POST["observaciones"];
 		$licence->Update();
-
-		Core::redir("report/construccion.php?var=$no_recibo");
+		
+		echo "<script> window.open('report/construccion.php?var=$no_recibo','_blank','width=400,height=600') </script>";
+		Core::redir("?view=construccion");
 	}
 ?>
