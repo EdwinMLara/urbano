@@ -9,7 +9,7 @@
 
 			$data_post = $_POST["photo"];
 	
-			$name_img = $_SERVER["DOCUMENT_ROOT"].'/urbano1.4/plugins/imagenes/Qr.png';    
+			$name_img = $_SERVER["DOCUMENT_ROOT"].'/urbano1.5/plugins/imagenes/Qr.png';    
 			$datapieces = explode(';base64,',$data_post);
 			$dataEnconding = $datapieces[1];
 			$dataDecoding = base64_decode($dataEnconding);
@@ -59,7 +59,9 @@
 		}else{
 			$prod= $licence->add();	
 		}
-		Core::redir("report/construccion.php?var=$no_recibo");
+		echo "<script> window.open('report/construccion.php?var=$no_recibo','_blank','width=400,height=600') </script>";
+		Core::redir("?view=construccion");
 
 	}
+	
 ?>
