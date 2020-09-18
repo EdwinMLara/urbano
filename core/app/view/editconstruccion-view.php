@@ -27,7 +27,7 @@
 								<label class="control-label">No. Recibo</label>
 							</div>
 							<div class="col-md-6">
-								<input type="text" name="numero_recibo" size="10" class="form-control" maxlength="4" value="<?php echo $construccion->numero_recibo ?>" required>
+								<input type="text" id="no_recibo" name="numero_recibo" size="10" class="form-control" maxlength="4" value="<?php echo $construccion->numero_recibo ?>" required>
 							</div>
 						</div>
 						<div class="col-md-12 form-group">
@@ -195,4 +195,7 @@
 		<button type="submit" class="btn btn-primary">Actualizar Licencia</button>
 	</form>
 	</div>
+	<div id="qrcode" style="display: none;"></div>
 </div>
+<script src="/urbano1.5/plugins/Qr/qrcode.min.js"></script>
+<script src="/urbano1.5/plugins/bootstrap/js/GenerateQr.js"></script>
