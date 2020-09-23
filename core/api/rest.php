@@ -4,6 +4,7 @@
         protected $request;
         protected $serviceName;
         protected $param;
+        protected $username;
 
         public function __construct(){
             if($_SERVER['REQUEST_METHOD'] !== 'POST'){
@@ -12,6 +13,10 @@
             $handler = fopen('php://input','r');
             $this->request = stream_get_contents($handler);
             $this->validateRequest();
+
+            if('generateToken' != $this->serviceName){
+                $this->validateToken();
+            }                        
         }
 
         public function validateRequest(){
@@ -86,5 +91,48 @@
             exit; 
         }
 
+        public function getAuthorizationHeader(){
+            $headers = null;
+            if(isset($_SERVER['Authorization'])){
+                $headers = trim($_SERVER['Authorization']);
+            }else if(isset($_SERVER['HTTP_AUTHORIZATION'])){
+                $headers = trim($_SERVER['HTTP_AUTHORIZATION']);
+            }else if(function_exists('apache_request_headers')){
+                $requestHeaders = apache_request_headers();
+                $requestHeaders = array_combine(array_map('ucwords',array_keys($requestHeaders)),array_values($requestHeaders));
+                if(isset($requestHeaders['Authorization'])){
+                    $headers = trim($requestHeaders['Authorization']);
+                }
+            }
+            return $headers;
+
+        }
+
+        public function getBearerToken(){
+            $headers = $this->getAuthorizationHeader();
+
+            if(!empty($headers)){
+                if(preg_match('/Bearer\s(\S+)/',$headers,$matches)){
+                    return $matches[1];
+                }
+            }
+
+            $this->throwError(ATHORIZATION_HEADER_NOT_FOUND,"Access Token not found");
+        }
+
+        public function validateToken(){
+            try{
+                $token = $this->getBearerToken();
+                $payload = JWT::decode($token,SECRET_KEY,['HS256']);
+                if(!is_object($payload)){
+                    $this->throwError(VALIDATE_PARAMETER_DATATYPE,"The Datatype in the token is invalid.");
+                }
+
+                $this->username = $payload->username;
+            }catch(Exception $e){
+                $this->throwError(ACCESS_TOKEN_ERROS,$e->getMessage());
+            }
+
+        }
     }
 ?>
