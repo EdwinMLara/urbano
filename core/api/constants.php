@@ -3,7 +3,7 @@
     define('BOOLEAN','1');
     define('INTEGER','2');
     define('STRING', '3');
-
+    
     define('REQUEST_METHOD_NOT_VALID',                   100);
     define('REQUEST_CONTENTTYPE_NOT_VALID',              101);
     define('REQUEST_NOT_VALID',                          102);
@@ -19,4 +19,5 @@
 
     define('ATHORIZATION_HEADER_NOT_FOUND',              300);
     define('ACCESS_TOKEN_ERROS',                         301);
+    define('JWT_PROCESSING_ERROR',                       302);
 ?>
