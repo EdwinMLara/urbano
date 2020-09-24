@@ -6,11 +6,6 @@
     class Api extends Rest{
         public function __construct(){
             parent::__construct();  
-            if('generateToken' == $this->serviceName){
-                $this->generateToken();
-            }else{
-                $this->processApi();
-            }
         }
 
         public function generateToken(){
@@ -31,7 +26,7 @@
                     'iat' => time(),
                     'iss' => 'localhost',
                     'exp' => time()+(5*60), //son segundo para que no se olvide
-                    'userId' => $user->username
+                    'userId' => $user->id
                 ];
 
                 $token = JWT::encode($payload,SECRET_KEY);
@@ -42,8 +37,9 @@
             }
         }
 
-        public function constructionData(){
-            echo "Aqui va la api para obtenener los datos de construccion";
+        public function contructionData(){
+            $licencia = new ConstruccionData();
+            $this->returnResponse(SUCESS_RESPONSE,$licencia->get_json(4090));
         }
     }
 
