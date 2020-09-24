@@ -21,4 +21,5 @@
     require_once('funciones.php');
 
     $api = new Api();
+    $api->processApi();
 ?>
