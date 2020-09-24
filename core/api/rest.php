@@ -4,7 +4,7 @@
         protected $request;
         protected $serviceName;
         protected $param;
-        protected $username;
+        protected $userid;
 
         public function __construct(){
             if($_SERVER['REQUEST_METHOD'] !== 'POST'){
@@ -128,7 +128,7 @@
                     $this->throwError(VALIDATE_PARAMETER_DATATYPE,"The Datatype in the token is invalid.");
                 }
 
-                $this->username = $payload->username;
+                $this->id = $payload->userId;
             }catch(Exception $e){
                 $this->throwError(ACCESS_TOKEN_ERROS,$e->getMessage());
             }
