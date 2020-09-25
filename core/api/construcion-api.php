@@ -21,8 +21,8 @@ function decrypt(string $data, string $key, string $method): string{
 $key = pack('H*','aaaaaaaaaaaaa');
 $method = 'aes-256-ecb';
 /*$encrypted = encrypt('4937', $key, $method);
-echo $encrypted.'</br>';*/
+echo $encrypted.'</br>';
 $decrypted = decrypt($_GET["encrypted"], $key, $method);
 $licencia = new ConstruccionData();
-$licencia->get_json($decrypted);
+$licencia->get_json($decrypted);*/
 ?>
