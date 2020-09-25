@@ -2,6 +2,7 @@
     include_once '../autoload.php';
     include_once '../app/model/UserData.php';
     include_once '../app/model/ConstruccionData.php';
+    include_once './construcion-api.php';
 
     class Api extends Rest{
         public function __construct(){
@@ -11,15 +12,20 @@
         public function generateToken(){
             $email = $this->validateParameter('email',$this->param["email"],STRING);
             $pass = $this->validateParameter('pass',$this->param["pass"],STRING);
+            $pass = Sha1(md5($pass));
             try{
                 $user = UserData::getByMail($email);
                 
                 if(!is_object($user)){
-                    $this->returnResponse(INVALID_USER_PASS,"email or password is incorrect. ");
+                    $this->returnResponse(INVALID_USER_PASS,"The email is incorrect. ");
                 }
 
                 if($user->is_active == 0){
                     $this->returnResponse(USER_NOT_ACTIVE,"The user not active.");
+                }
+
+                if(!($pass == $user->password)){
+                    $this->returnResponse(INVALID_USER_PASS,"The password is incorrect.");
                 }
 
                 $payload = [
@@ -39,7 +45,11 @@
 
         public function contructionData(){
             $licencia = new ConstruccionData();
-            $this->returnResponse(SUCESS_RESPONSE,$licencia->get_json(4090));
+            $key = pack('H*','aaaaaaaaaaaaa');
+            $method = 'aes-256-ecb';
+            $value = $this->validateParameter('value',$this->param["numero_recibo"],STRING);
+            $decrypted = decrypt($value, $key, $method);
+            $this->returnResponse(SUCESS_RESPONSE,$licencia->get_json($decrypted));
         }
     }
 
