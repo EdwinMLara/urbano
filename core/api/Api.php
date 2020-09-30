@@ -10,8 +10,8 @@
         }
 
         public function generateToken(){
-            $email = $this->validateParameter('email',$this->param["email"],STRING);
-            $pass = $this->validateParameter('pass',$this->param["pass"],STRING);
+            $email = $this->validateParameter('username',$this->param["username"],STRING);
+            $pass = $this->validateParameter('password',$this->param["password"],STRING);
             $pass = Sha1(md5($pass));
             try{
                 $user = UserData::getByMail($email);
