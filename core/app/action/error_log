@@ -1,0 +1,2 @@
+[28-Oct-2020 16:00:53 UTC] PHP Fatal error:  Class 'Api' not found in /home/infuriangato/public_html/intranet.uriangato.gob.mx/urbano1.5/core/api/logApiJwt.php on line 23
+[28-Oct-2020 16:03:13 UTC] PHP Fatal error:  Class 'Api' not found in /home/infuriangato/public_html/intranet.uriangato.gob.mx/urbano1.5/core/api/logApiJwt.php on line 23

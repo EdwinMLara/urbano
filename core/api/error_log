@@ -1,0 +1,6 @@
+[28-Oct-2020 16:00:53 UTC] PHP Fatal error:  Class 'Api' not found in /home/infuriangato/public_html/intranet.uriangato.gob.mx/urbano1.5/core/api/logApiJwt.php on line 23
+[28-Oct-2020 16:03:13 UTC] PHP Fatal error:  Class 'Api' not found in /home/infuriangato/public_html/intranet.uriangato.gob.mx/urbano1.5/core/api/logApiJwt.php on line 23
+[28-Oct-2020 16:08:55 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/infuriangato/public_html/intranet.uriangato.gob.mx/urbano1.5/core/api/construcion-api.php on line 5
+[28-Oct-2020 16:10:28 UTC] PHP Fatal error:  Class 'Rest' not found in /home/infuriangato/public_html/intranet.uriangato.gob.mx/urbano1.5/core/api/Api.php on line 7
+[28-Oct-2020 16:10:33 UTC] PHP Fatal error:  Class 'Rest' not found in /home/infuriangato/public_html/intranet.uriangato.gob.mx/urbano1.5/core/api/Api.php on line 7
+[28-Oct-2020 16:13:37 UTC] PHP Fatal error:  Class 'JWT' not found in /home/infuriangato/public_html/intranet.uriangato.gob.mx/urbano1.5/core/api/Api.php on line 39

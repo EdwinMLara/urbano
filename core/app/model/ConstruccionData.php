@@ -78,7 +78,7 @@
 		}
 
 		public function get_json($hash){
-			$sql = "SELECT * FROM licenciacons WHERE numero_licencia = $hash";
+			$sql = "SELECT * FROM licenciacons WHERE numero_recibo = $hash";
 			$query = Executor::doit($sql);
 			$aux = Model::one($query[0],new ConstruccionData());
 			$json_array = array('licencia' => $aux);

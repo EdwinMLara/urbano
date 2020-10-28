@@ -2,7 +2,7 @@
 include_once '../app/model/ConstruccionData.php';
 include_once '../autoload.php';
 
-function encrypt(string $data, string $key, string $method): string{
+function encrypt($data, $key,$method){
     $ivSize = openssl_cipher_iv_length($method);
         $iv = openssl_random_pseudo_bytes($ivSize);
         $encrypted = openssl_encrypt($data, $method, $key, OPENSSL_RAW_DATA, $iv);
@@ -10,7 +10,7 @@ function encrypt(string $data, string $key, string $method): string{
     return $encrypted;
 }
 
-function decrypt(string $data, string $key, string $method): string{
+function decrypt($data, $key, $method){
     $data = pack('H*', $data);
     $ivSize = openssl_cipher_iv_length($method);  
         $iv = $iv = openssl_random_pseudo_bytes($ivSize);

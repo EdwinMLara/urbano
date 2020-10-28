@@ -18,7 +18,7 @@ function tomar_imagen(){
 function hash_datos(text){
     return $.ajax({
         type:'POST',
-        url: "../../urbano1.5/core/app/action/hash_data.php",
+        url: "http://intranet.uriangato.gob.mx/urbano1.5/core/app/action/hash_data.php",
         dataType: "json",
         data:{data: text},
         async:false,

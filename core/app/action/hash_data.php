@@ -1,6 +1,6 @@
 <?php
 
-function encrypt(string $data, string $key, string $method): string{
+function encrypt($data,$key,$method){
     $ivSize = openssl_cipher_iv_length($method);
         $iv = openssl_random_pseudo_bytes($ivSize);
         $encrypted = openssl_encrypt($data, $method, $key, OPENSSL_RAW_DATA, $iv);

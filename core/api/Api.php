@@ -3,6 +3,8 @@
     include_once '../app/model/UserData.php';
     include_once '../app/model/ConstruccionData.php';
     include_once './construcion-api.php';
+    include_once './rest.php';
+    include_once './jwt.php';
 
     class Api extends Rest{
         public function __construct(){
@@ -31,7 +33,7 @@
                 $payload = [
                     'iat' => time(),
                     'iss' => 'localhost',
-                    'exp' => time()+(5*60), //son segundo para que no se olvide
+                    'exp' => time()+(20*60), //son segundo para que no se olvide
                     'userId' => $user->id
                 ];
 
