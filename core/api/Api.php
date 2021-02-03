@@ -49,8 +49,13 @@
             $licencia = new ConstruccionData();
             $key = pack('H*','aaaaaaaaaaaaa');
             $method = 'aes-256-ecb';
+            $decrypted = 0;
             $value = $this->validateParameter('value',$this->param["numero_recibo"],STRING);
+            if(!(strlen($value) == 32)){               
+                $this->throwError(DECRIPT_ERROR,"Qr no valido");
+            }
             $decrypted = decrypt($value, $key, $method);
+            $this->validateParameter('value',$decrypted,INTEGER);
             $this->returnResponse(SUCESS_RESPONSE,$licencia->get_json($decrypted));
         }
     }

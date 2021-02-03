@@ -20,4 +20,6 @@
     define('ATHORIZATION_HEADER_NOT_FOUND',              300);
     define('ACCESS_TOKEN_ERROS',                         301);
     define('JWT_PROCESSING_ERROR',                       302);
+
+    define('DECRIPT_ERROR',                               1001);
 ?>
